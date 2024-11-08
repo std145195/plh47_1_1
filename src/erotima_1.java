@@ -3,15 +3,15 @@ import java.util.Random;
 
 public class erotima_1 {
     // Ορίζουμε τις ελάχιστες και μέγιστες τιμές για το μέγεθος του password
-    private static final int PASSWORD_MIN = 8;
-    private static final int PASSWORD_MAX = 16;
+    private static final int PASSWORD_MIN = 8;   // Ελάχιστο μήκος password
+    private static final int PASSWORD_MAX = 16;  // Μέγιστο μήκος password
     // Δημιουργία αντικειμένου Random για την παραγωγή τυχαίων αριθμών
     private static final Random RANDOM = new Random();
     // Συνολικός αριθμός χαρακτήρων (26 γράμματα για μικρά και κεφαλαία)
     private static final int TOTAL_CHAR_COUNT = 26;
 
     public static void main(String[] args) {
-        // Ορισμός τυχαίας τιμής για το n, μεταξύ 20 και 25
+        // Ορισμός τυχαίας τιμής για το n, μεταξύ 20 και 25 (δημιουργούμε πίνακα 2^n passwords)
         int n = RANDOM.nextInt(6) + 20;
         // Δημιουργία passwords με μέγεθος 2^n
         String[] passwords = generatePasswords((int) Math.pow(2, n));
@@ -100,7 +100,7 @@ public class erotima_1 {
         return passwords;
     }
 
-    //Δημιουργεί ένα τυχαίο password
+    // Δημιουργεί ένα τυχαίο password
     private static String randomPassword() {
         // Επιλογή τυχαίου μήκους για το password (από 8 έως 16 χαρακτήρες)
         int size = RANDOM.nextInt(PASSWORD_MAX - PASSWORD_MIN + 1) + PASSWORD_MIN;
@@ -119,7 +119,7 @@ public class erotima_1 {
         return sb.toString();  // Επιστροφή του τυχαίου password
     }
 
-    //Νήμα που επεξεργάζεται ένα τμήμα του πίνακα passwords και μετράει τους χαρακτήρες
+    // Νήμα που επεξεργάζεται ένα τμήμα του πίνακα passwords και μετράει τους χαρακτήρες
     static class ProcessThread extends Thread {
         private final String[] passwords;
         // Πίνακας για την καταμέτρηση χαρακτήρων (52 θέσεις για μικρά και κεφαλαία)
@@ -148,6 +148,7 @@ public class erotima_1 {
                 }
             }
         }
+
         // Μέθοδος για να επιστρέψει το αποτέλεσμα του counter για αυτό το νήμα
         public int[] getCounter() {
             return counter;

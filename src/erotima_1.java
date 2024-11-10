@@ -29,11 +29,6 @@ public class erotima_1 {
 
         // Μετατροπή της λίστας σε πίνακα
         String[] passwords = filteredPasswords.toArray(new String[0]);
-        // Δημιουργία passwords με μέγεθος 2^n
-        //String[] passwords = generatePasswords((int) Math.pow(2, n));
-        // Debugging: εκτύπωση του n και του πλήθους των passwords (προαιρετικά)
-        // System.out.println("\nΤο n είναι:" + n);  // Fixme: αφαιρέστε για παραγωγή
-        // System.out.println("Οι γραμμές/passwords του πίνακα είναι:" + passwords.length);
 
         // Ορισμός των διαφόρων αριθμών νημάτων (1, 2, 4, 8)
         int[] threadCounts = {1, 2, 4, 8};

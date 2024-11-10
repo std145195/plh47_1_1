@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class erotima_1 {
     // Ορίζουμε τις ελάχιστες και μέγιστες τιμές για το μέγεθος του password
-    private static final int PASSWORD_MIN = 8;   // Ελάχιστο μήκος password
-    private static final int PASSWORD_MAX = 16;  // Μέγιστο μήκος password
+    private static final int passMin = 8;   // Ελάχιστο μήκος password
+    private static final int passMax = 16;  // Μέγιστο μήκος password
     // Δημιουργία αντικειμένου Random για την παραγωγή τυχαίων αριθμών
     private static final Random RANDOM = new Random();
     // Συνολικός αριθμός χαρακτήρων (26 γράμματα για μικρά και κεφαλαία)
-    private static final int TOTAL_CHAR_COUNT = 26;
+    private static final int totalChar = 26;
 
     public static void main(String[] args) {
         // Ορισμός τυχαίας τιμής για το n, μεταξύ 20 και 25 (δημιουργούμε πίνακα 2^n passwords)
@@ -22,7 +22,7 @@ public class erotima_1 {
         // Φιλτράρισμα των passwords ώστε να διατηρούνται μόνο όσα έχουν μήκος από 8 έως 16 χαρακτήρες
         ArrayList<String> filteredPasswords = new ArrayList<>();
         for (String password : allPasswords) {
-            if (password.length() >= PASSWORD_MIN && password.length() <= PASSWORD_MAX) {
+            if (password.length() >= passMin && password.length() <= passMax) {
                 filteredPasswords.add(password);
             }
         }
@@ -139,7 +139,7 @@ public class erotima_1 {
     static class ProcessThread extends Thread {
         private final String[] passwords;
         // Πίνακας για την καταμέτρηση χαρακτήρων (52 θέσεις για μικρά και κεφαλαία)
-        private final int[] counter = new int[TOTAL_CHAR_COUNT * 2];
+        private final int[] counter = new int[totalChar * 2];
 
         public ProcessThread(String[] passwords) {
             this.passwords = passwords;  // Ορίζουμε τα passwords που θα επεξεργαστεί το νήμα
@@ -158,7 +158,7 @@ public class erotima_1 {
                     }
                     // Αν είναι κεφαλαίο γράμμα, αυξάνουμε την αντίστοιχη θέση
                     else if (c >= 'A' && c <= 'Z') {
-                        int index = (c - 'A') + TOTAL_CHAR_COUNT;
+                        int index = (c - 'A') + totalChar;
                         counter[index]++;
                     }
                 }

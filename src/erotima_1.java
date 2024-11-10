@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class erotima_1 {
     // Ορίζουμε τις ελάχιστες και μέγιστες τιμές για το μέγεθος του password
@@ -13,8 +14,23 @@ public class erotima_1 {
     public static void main(String[] args) {
         // Ορισμός τυχαίας τιμής για το n, μεταξύ 20 και 25 (δημιουργούμε πίνακα 2^n passwords)
         int n = RANDOM.nextInt(6) + 20;
+
         // Δημιουργία passwords με μέγεθος 2^n
-        String[] passwords = generatePasswords((int) Math.pow(2, n));
+        String[] allPasswords = generatePasswords((int) Math.pow(2, n));
+
+
+        // Φιλτράρισμα των passwords ώστε να διατηρούνται μόνο όσα έχουν μήκος από 8 έως 16 χαρακτήρες
+        ArrayList<String> filteredPasswords = new ArrayList<>();
+        for (String password : allPasswords) {
+            if (password.length() >= PASSWORD_MIN && password.length() <= PASSWORD_MAX) {
+                filteredPasswords.add(password);
+            }
+        }
+
+        // Μετατροπή της λίστας σε πίνακα
+        String[] passwords = filteredPasswords.toArray(new String[0]);
+        // Δημιουργία passwords με μέγεθος 2^n
+        //String[] passwords = generatePasswords((int) Math.pow(2, n));
         // Debugging: εκτύπωση του n και του πλήθους των passwords (προαιρετικά)
         // System.out.println("\nΤο n είναι:" + n);  // Fixme: αφαιρέστε για παραγωγή
         // System.out.println("Οι γραμμές/passwords του πίνακα είναι:" + passwords.length);
@@ -102,8 +118,8 @@ public class erotima_1 {
 
     // Δημιουργεί ένα τυχαίο password
     private static String randomPassword() {
-        // Επιλογή τυχαίου μήκους για το password (από 8 έως 16 χαρακτήρες)
-        int size = RANDOM.nextInt(PASSWORD_MAX - PASSWORD_MIN + 1) + PASSWORD_MIN;
+        // Επιλογή τυχαίου μήκους για το password (μεταξύ 1 και 32 χαρακτήρες)
+        int size = RANDOM.nextInt(32) + 1;
         // Χρήση StringBuilder για τη δημιουργία του password
         StringBuilder sb = new StringBuilder(size);
         for (int i = 0; i < size; i++) {
